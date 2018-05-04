@@ -7,6 +7,9 @@ AllCops:
     - 'bin/**/*'
     - 'node_modules/**/*'
 
+Rails:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
