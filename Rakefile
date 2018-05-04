@@ -7,4 +7,4 @@ Rails.application.load_tasks
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new
 
-task default: %i[rubocop] # adds this to :test task, already a default
+task default: %i[rubocop]

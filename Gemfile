@@ -63,3 +63,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Added at 2018-05-04 13:23:07 -0400 by roop:
 gem 'rubocop', '~> 0.55.0'
+
+# Added at 2018-05-04 14:04:22 -0400 by roop:
+gem "rspec-rails", "~> 3.7"
