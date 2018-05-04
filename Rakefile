@@ -2,5 +2,9 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
-
 Rails.application.load_tasks
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new
+
+task default: %i[rubocop] # adds this to :test task, already a default
