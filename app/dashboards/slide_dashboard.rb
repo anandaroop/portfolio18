@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class SlideDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -17,7 +17,7 @@ class SlideDashboard < Administrate::BaseDashboard
     created_on: Field::DateTime,
     updated_on: Field::DateTime,
     position: Field::Number,
-    clip: Field::Boolean,
+    clip: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,47 +25,45 @@ class SlideDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :project,
-    :tags,
-    :id,
-    :image,
+  COLLECTION_ATTRIBUTES = %i[
+    image
+    caption
+    project
+    position
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :project,
-    :tags,
-    :id,
-    :image,
-    :caption,
-    :url,
-    :created_on,
-    :updated_on,
-    :position,
-    :clip,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    project
+    id
+    image
+    caption
+    position
+    url
+    clip
+    tags
+    created_on
+    updated_on
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :project,
-    :tags,
-    :image,
-    :caption,
-    :url,
-    :created_on,
-    :updated_on,
-    :position,
-    :clip,
+  FORM_ATTRIBUTES = %i[
+    project
+    image
+    caption
+    position
+    url
+    clip
+    tags
   ].freeze
 
   # Overwrite this method to customize how slides are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(slide)
-  #   "Slide ##{slide.id}"
-  # end
+  def display_resource(slide)
+    "#{slide.project.title} #{slide.position}"
+  end
 end

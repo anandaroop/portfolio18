@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class ProjectDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -18,7 +18,7 @@ class ProjectDashboard < Administrate::BaseDashboard
     description: Field::Text,
     visible: Field::Boolean,
     created_on: Field::DateTime,
-    updated_on: Field::DateTime,
+    updated_on: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -26,49 +26,46 @@ class ProjectDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :client,
-    :slides,
-    :id,
-    :title,
+  COLLECTION_ATTRIBUTES = %i[
+    year
+    title
+    client
+    slides
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :client,
-    :slides,
-    :id,
-    :title,
-    :subtitle,
-    :year,
-    :month,
-    :description,
-    :visible,
-    :created_on,
-    :updated_on,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    client
+    id
+    title
+    subtitle
+    year
+    month
+    description
+    visible
+    slides
+    created_on
+    updated_on
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :client,
-    :slides,
-    :title,
-    :subtitle,
-    :year,
-    :month,
-    :description,
-    :visible,
-    :created_on,
-    :updated_on,
+  FORM_ATTRIBUTES = %i[
+    client
+    title
+    subtitle
+    year
+    month
+    description
+    visible
   ].freeze
 
   # Overwrite this method to customize how projects are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(project)
-  #   "Project ##{project.id}"
-  # end
+  def display_resource(project)
+    project.title
+  end
 end

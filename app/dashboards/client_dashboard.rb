@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class ClientDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -14,7 +14,7 @@ class ClientDashboard < Administrate::BaseDashboard
     name: Field::String,
     abbr: Field::String,
     created_on: Field::DateTime,
-    updated_on: Field::DateTime,
+    updated_on: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,41 +22,35 @@ class ClientDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = [
-    :projects,
-    :slides,
-    :id,
-    :name,
+  COLLECTION_ATTRIBUTES = %i[
+    name
+    projects
+    slides
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :projects,
-    :slides,
-    :id,
-    :name,
-    :abbr,
-    :created_on,
-    :updated_on,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    id
+    name
+    abbr
+    projects
+    created_on
+    updated_on
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :projects,
-    :slides,
-    :name,
-    :abbr,
-    :created_on,
-    :updated_on,
+  FORM_ATTRIBUTES = %i[
+    name
+    abbr
   ].freeze
 
   # Overwrite this method to customize how clients are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(client)
-  #   "Client ##{client.id}"
-  # end
+  def display_resource(client)
+    client.name
+  end
 end

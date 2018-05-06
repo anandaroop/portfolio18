@@ -7,17 +7,20 @@ AllCops:
     - 'bin/**/*'
     - 'node_modules/**/*'
 
+Metrics/LineLength:
+  Max: 120
+
 Rails:
   Enabled: true
 
-Style/FrozenStringLiteralComment:
+Rails/HasAndBelongsToMany:
   Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Metrics/LineLength:
-  Max: 120
-
-Rails/HasAndBelongsToMany:
+Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma

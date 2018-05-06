@@ -1,4 +1,4 @@
-require "administrate/base_dashboard"
+require 'administrate/base_dashboard'
 
 class TagDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -10,7 +10,7 @@ class TagDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     slides: Field::HasMany,
     id: Field::Number,
-    name: Field::String,
+    name: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -19,31 +19,31 @@ class TagDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :slides,
-    :id,
     :name,
+    :slides,
+    # :id,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = [
-    :slides,
-    :id,
-    :name,
+  SHOW_PAGE_ATTRIBUTES = %i[
+    id
+    name
+    slides
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :slides,
-    :name,
+  FORM_ATTRIBUTES = %i[
+    name
+    slides
   ].freeze
 
   # Overwrite this method to customize how tags are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(tag)
-  #   "Tag ##{tag.id}"
-  # end
+  def display_resource(tag)
+    tag.name
+  end
 end
