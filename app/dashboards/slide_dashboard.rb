@@ -11,7 +11,7 @@ class SlideDashboard < Administrate::BaseDashboard
     project: Field::BelongsTo,
     tags: Field::HasMany,
     id: Field::Number,
-    image: Field::String,
+    legacy_image: Field::String,
     caption: Field::Text,
     url: Field::String,
     created_on: Field::DateTime,
@@ -26,7 +26,7 @@ class SlideDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    image
+    legacy_image
     caption
     project
     position
@@ -37,7 +37,7 @@ class SlideDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     project
     id
-    image
+    legacy_image
     caption
     position
     url
@@ -52,7 +52,7 @@ class SlideDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     project
-    image
+    legacy_image
     caption
     position
     url

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_06_141824) do
+ActiveRecord::Schema.define(version: 2018_05_09_232421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_05_06_141824) do
 
   create_table "slides", force: :cascade do |t|
     t.bigint "project_id"
-    t.string "image", limit: 255
+    t.string "legacy_image", limit: 255
     t.text "caption"
     t.string "url", limit: 255
     t.datetime "created_on"
