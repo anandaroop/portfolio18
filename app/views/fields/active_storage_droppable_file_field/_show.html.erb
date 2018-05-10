@@ -1,0 +1,7 @@
+<%# debug (field.methods - Object.new.methods).sort %>
+<% if field.data.attached? %>
+  <%= image_tag(url_for(field.data.blob)) %><br>
+  <tt><%= field.data.blob.filename %></tt>
+<% else %>
+  n/a
+<% end %>
