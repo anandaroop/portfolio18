@@ -1,6 +1,16 @@
+<%# debug (f.methods - Object.new.methods).sort %>
+<%# debug (field.methods - Object.new.methods).sort %>
+<%
+if field.data.attached?
+  src = url_for(field.data.blob)
+else
+  src = "missing"
+end
+%>
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute %>
+  <%= image_tag(src, class: "#{f.object_name}-#{field.name}-preview") %>
+  <%= f.file_field field.attribute %>
 </div>
