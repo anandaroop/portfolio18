@@ -6,6 +6,25 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+amazon_staging:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  region: us-east-1
+  bucket: anandarooproy-portfolio18-staging
+
+amazon_production:
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  region: us-east-1
+  bucket: anandarooproy-portfolio18-staging
+
+mirror_local_to_amazon_staging:
+  service: Mirror
+  primary: local
+  mirrors: [ amazon_staging ]
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
