@@ -16,6 +16,9 @@
 # Ignore uploaded files in development
 /storage/*
 
+# Ignore backups of uploaded files in development
+/storage-originals/*
+
 /node_modules
 /yarn-error.log
 
