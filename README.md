@@ -7,6 +7,7 @@ A port of my personal portfolio website to a more modern configuration:
 - serving a GraphQL data api
 - consumed by a React frontend web app
 - bundled with Webpack/er
+- tested on CircleCi
 
 And maybe someday:
 
