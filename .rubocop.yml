@@ -7,6 +7,10 @@ AllCops:
     - 'bin/**/*'
     - 'node_modules/**/*'
 
+Metrics/BlockLength:
+  Exclude:
+    - lib/tasks/*
+
 Metrics/LineLength:
   Max: 120
 
@@ -20,6 +24,9 @@ Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/NumericPredicate:
   Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
