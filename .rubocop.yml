@@ -2,10 +2,10 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   Exclude:
-    - 'db/**/*'
-    # - 'config/**/*'
     - 'bin/**/*'
+    - 'db/**/*'
     - 'node_modules/**/*'
+    - 'vendor/**/*'
 
 Metrics/BlockLength:
   Exclude:

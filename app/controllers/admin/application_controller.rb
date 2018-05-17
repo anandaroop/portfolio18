@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     # View/edit with rails credentials:show or credentials:edit
-    http_basic_authenticate_with Rails.application.credentials.admin_user
+    http_basic_authenticate_with Rails.application.credentials.admin_user unless Rails.env.test?
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
