@@ -1,7 +1,7 @@
-.bundle
-.byebug_history
-.env
-.yarn-integrity
+/.bundle
+/.byebug_history
+/.env
+/.yarn-integrity
 /config/master.key
 /log/*
 !/log/.keep
@@ -10,9 +10,10 @@
 /public/assets
 /public/packs
 /public/packs-test
+/slide.tgz
 /storage-originals/*
 /storage/*
 /tmp/*
 !/tmp/.keep
-yarn-debug.log*
-yarn-error.log
+/yarn-debug.log*
+/yarn-error.log
