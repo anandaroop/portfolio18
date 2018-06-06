@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_232421) do
     t.string "abbr", limit: 4, default: "", null: false
     t.datetime "created_on"
     t.datetime "updated_on"
-    t.index ["abbr"], name: "idx_248028_clients_abbr_index", unique: true
+    t.index ["abbr"], name: "idx_262640_clients_abbr_index", unique: true
   end
 
   create_table "projects", force: :cascade do |t|
