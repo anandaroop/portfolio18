@@ -4,18 +4,20 @@ namespace :pofo do
   namespace :images do
     def all_or_some_slides(limit)
       criteria = if limit == 'all'
-                  Slide.all
-                elsif limit.to_i > 0
-                  Slide.limit(limit)
-                else
-                  Slide.limit(5)
-                end
+                   Slide.all
+                 elsif limit.to_i > 0
+                   Slide.limit(limit)
+                 else
+                   Slide.limit(5)
+                 end
       criteria.order(id: :desc)
     end
 
     namespace :legacy do
       desc 'Attach images from old portfolio dir to new Slide models'
       task :migrate, [:limit] => :environment do |_t, args|
+        puts "Environment: #{Rails.env}"
+        puts "ActiveStorage: #{ENV['ACTIVE_STORAGE_SERVICE']}"
         slides = all_or_some_slides(args.limit)
         slides.each do |slide|
           path = File.join(OLD_IMAGE_DIR, slide.id.to_s, 'large', slide.legacy_image)
@@ -30,6 +32,8 @@ namespace :pofo do
 
     desc 'Mirror images by re-attaching existing ones, once images are attached and mirroring is set up.'
     task :mirror, [:limit] => :environment do |_t, args|
+      puts "Environment: #{Rails.env}"
+      puts "ActiveStorage: #{ENV['ACTIVE_STORAGE_SERVICE']}"
       slides = all_or_some_slides(args.limit)
       slides.each do |slide|
         puts slide.image.attachment.inspect
