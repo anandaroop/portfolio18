@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_232421) do
     t.string "abbr", limit: 4, default: "", null: false
     t.datetime "created_on"
     t.datetime "updated_on"
-    t.index ["abbr"], name: "idx_262640_clients_abbr_index", unique: true
+    t.index ["abbr"], name: "idx_16615_clients_abbr_index", unique: true
   end
 
   create_table "projects", force: :cascade do |t|
@@ -67,13 +67,13 @@ ActiveRecord::Schema.define(version: 2018_05_09_232421) do
     t.boolean "clip", default: false
   end
 
-  create_table "slides_tags", id: false, force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "slide_id"
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name", limit: 255
+  end
+
+  create_table "tags_slides", id: false, force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "slide_id"
   end
 
 end
