@@ -26,5 +26,14 @@ module Types
     def slide(id:)
       Slide.find(id)
     end
+
+    field :image, ImageType, null: true do
+      description 'Find an image by its slide id'
+      argument :id, ID, required: true
+    end
+
+    def image(id:)
+      Slide.find(id).image
+    end
   end
 end

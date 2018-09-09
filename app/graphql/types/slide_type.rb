@@ -7,5 +7,6 @@ module Types
     field :position, Integer, 'Order of slide within project', null: true
     field :clip, Boolean, 'True if video clip', null: true
     field :project, ProjectType, 'Project for this slide', null: false
+    field :image, ImageType, 'Attached image', null: true
   end
 end
