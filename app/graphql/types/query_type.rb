@@ -9,6 +9,14 @@ module Types
       Client.find(id)
     end
 
+    field :clients, [ClientType], null: true do
+      description 'List clients'
+    end
+
+    def clients
+      Client.all
+    end
+
     field :project, ProjectType, null: true do
       description 'Find a project by id'
       argument :id, ID, required: true
@@ -16,6 +24,14 @@ module Types
 
     def project(id:)
       Project.find(id)
+    end
+
+    field :projects, [ProjectType], null: true do
+      description 'List projects'
+    end
+
+    def projects
+      Project.all
     end
 
     field :slide, SlideType, null: true do
