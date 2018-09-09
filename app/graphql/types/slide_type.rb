@@ -5,5 +5,6 @@ module Types
     field :url, String, 'Optional URL for non-image content', null: true
     field :position, Integer, 'Order of slide within project', null: true
     field :clip, Boolean, 'True if video clip', null: true
+    field :project, ProjectType, 'Project for this slide', null: false
   end
 end
