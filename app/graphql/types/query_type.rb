@@ -17,5 +17,14 @@ module Types
     def project(id:)
       Project.find(id)
     end
+
+    field :slide, SlideType, null: true do
+      description 'Find a slide by id'
+      argument :id, ID, required: true
+    end
+
+    def slide(id:)
+      Slide.find(id)
+    end
   end
 end
