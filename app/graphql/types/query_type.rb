@@ -11,10 +11,12 @@ module Types
 
     field :clients, [ClientType], null: true do
       description 'List clients'
+      argument :offset, Integer, required: false, default_value: 0
+      argument :limit, Integer, required: false, default_value: 10
     end
 
-    def clients
-      Client.all
+    def clients(offset:, limit:)
+      Client.offset(offset).limit(limit)
     end
 
     field :project, ProjectType, null: true do
@@ -28,10 +30,12 @@ module Types
 
     field :projects, [ProjectType], null: true do
       description 'List projects'
+      argument :offset, Integer, required: false, default_value: 0
+      argument :limit, Integer, required: false, default_value: 10
     end
 
-    def projects
-      Project.all
+    def projects(offset:, limit:)
+      Project.offset(offset).limit(limit)
     end
 
     field :slide, SlideType, null: true do
