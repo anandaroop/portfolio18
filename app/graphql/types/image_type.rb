@@ -9,8 +9,6 @@ module Types
       Rails.application.routes.url_helpers.rails_blob_path(object, only_path: true)
     end
 
-    def service_url
-      object.service_url
-    end
+    delegate :service_url, to: :object
   end
 end
