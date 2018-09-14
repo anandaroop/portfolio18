@@ -16,7 +16,7 @@ module Types
     end
 
     def clients(offset:, limit:)
-      Client.offset(offset).limit(limit)
+      Client.unscoped.order('name asc').offset(offset).limit(limit)
     end
 
     field :project, ProjectType, null: true do
@@ -32,10 +32,11 @@ module Types
       description 'List projects'
       argument :offset, Integer, required: false, default_value: 0
       argument :limit, Integer, required: false, default_value: 10
+      argument :order, ProjectSort, required: false, default_value: ProjectSort.values['DATE_DESC'].value
     end
 
-    def projects(offset:, limit:)
-      Project.offset(offset).limit(limit)
+    def projects(offset:, limit:, order:)
+      Project.unscoped.order(order).offset(offset).limit(limit)
     end
 
     field :slide, SlideType, null: true do
