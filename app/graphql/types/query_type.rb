@@ -9,6 +9,16 @@ module Types
       Client.find(id)
     end
 
+    field :clients, [ClientType], null: true do
+      description 'List clients'
+      argument :offset, Integer, required: false, default_value: 0
+      argument :limit, Integer, required: false, default_value: 10
+    end
+
+    def clients(offset:, limit:)
+      Client.unscoped.order('name asc').offset(offset).limit(limit)
+    end
+
     field :project, ProjectType, null: true do
       description 'Find a project by id'
       argument :id, ID, required: true
@@ -16,6 +26,17 @@ module Types
 
     def project(id:)
       Project.find(id)
+    end
+
+    field :projects, [ProjectType], null: true do
+      description 'List projects'
+      argument :offset, Integer, required: false, default_value: 0
+      argument :limit, Integer, required: false, default_value: 10
+      argument :order, ProjectSort, required: false, default_value: ProjectSort.values['DATE_DESC'].value
+    end
+
+    def projects(offset:, limit:, order:)
+      Project.unscoped.order(order).offset(offset).limit(limit)
     end
 
     field :slide, SlideType, null: true do
