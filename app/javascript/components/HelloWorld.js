@@ -1,13 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
 class HelloWorld extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        Greeting: {this.props.greeting}
-      </React.Fragment>
-    )
+  componentDidMount() {
+    setTimeout(() => {
+      console.log('5 seconds')
+    }, 5000)
+  }
+
+  render() {
+    return <React.Fragment>Greeting: {this.props.greeting}</React.Fragment>
   }
 }
 

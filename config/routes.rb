@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/hello'
   namespace :admin do
     resources :clients
     resources :projects
