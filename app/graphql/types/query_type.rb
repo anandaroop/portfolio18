@@ -36,7 +36,7 @@ module Types
     end
 
     def projects(offset:, limit:, order:)
-      Project.unscoped.order(order).offset(offset).limit(limit)
+      Project.unscoped.includes(:slides).order(order).offset(offset).limit(limit)
     end
 
     field :slide, SlideType, null: true do
