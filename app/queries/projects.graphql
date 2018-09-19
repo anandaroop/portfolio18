@@ -1,0 +1,13 @@
+query projectsQuery {
+  projects(limit: 20) {
+    id
+    title
+    slides {
+      id
+      image {
+        url
+        serviceUrl
+      }
+    }
+  }
+}
