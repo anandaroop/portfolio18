@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'pages#projects'
+
   namespace :admin do
     resources :clients
     resources :projects
