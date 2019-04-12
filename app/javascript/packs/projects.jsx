@@ -23,7 +23,7 @@ const Project = ({ title, slides }) => (
   <div>
     <h2>{title}</h2>
     {slides.map(s => (
-      <img key={s.id} src={s.image.url} width="400" />
+      <span key={s.id}>{s.id} </span>
     ))}
   </div>
 )

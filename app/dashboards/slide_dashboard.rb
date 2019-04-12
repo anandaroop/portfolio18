@@ -12,7 +12,7 @@ class SlideDashboard < Administrate::BaseDashboard
     tags: Field::HasMany,
     id: Field::Number,
     legacy_image: Field::String,
-    image: ActiveStorageDroppableFileField,
+    # image: ActiveStorageDroppableFileField,
     caption: Field::Text,
     url: Field::String,
     created_on: Field::DateTime,
@@ -28,7 +28,7 @@ class SlideDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     legacy_image
-    image
+    # image
     caption
     project
     position
@@ -40,7 +40,7 @@ class SlideDashboard < Administrate::BaseDashboard
     project
     id
     legacy_image
-    image
+    # image
     caption
     position
     url
@@ -56,7 +56,7 @@ class SlideDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     project
     legacy_image
-    image
+    # image
     caption
     position
     url

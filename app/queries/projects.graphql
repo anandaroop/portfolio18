@@ -4,10 +4,6 @@ query projectsQuery {
     title
     slides {
       id
-      image {
-        url
-        serviceUrl
-      }
     }
   }
 }

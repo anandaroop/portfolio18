@@ -11,8 +11,6 @@
 /public/packs
 /public/packs-test
 /slide.tgz
-/storage-originals/*
-/storage/*
 /tmp/*
 !/tmp/.keep
 /yarn-debug.log*
