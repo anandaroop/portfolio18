@@ -4,6 +4,10 @@ query projectsQuery {
     title
     slides {
       id
+      image {
+        url
+        smallUrl
+      }
     }
   }
 }
