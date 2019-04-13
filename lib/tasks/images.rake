@@ -29,6 +29,7 @@ namespace :pofo do
           path = File.join(OLD_IMAGE_DIR, slide.id.to_s, 'large', slide.legacy_image)
           puts path
           next unless File.exist?(path)
+
           slide.image = File.open(path)
           slide.save
         end
