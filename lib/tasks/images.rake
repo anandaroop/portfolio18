@@ -13,6 +13,12 @@ namespace :pofo do
       criteria.order(id: :desc)
     end
 
+    desc 'Tmp: unset slide images (and maybe untar archive)'
+    task reset: :environment do
+      Slide.update(image_data: nil)
+      # system "tar xvzf /Users/roop/rails/portfolio18/slide.tgz -C /Users/roop/rails/portfolio/app/assets/images/"
+    end
+
     namespace :legacy do
       desc 'Attach images from old portfolio dir to new Slide models'
       task :migrate, [:limit] => :environment do |_t, args|
@@ -23,9 +29,8 @@ namespace :pofo do
           path = File.join(OLD_IMAGE_DIR, slide.id.to_s, 'large', slide.legacy_image)
           puts path
           next unless File.exist?(path)
-          io = File.open(path)
-          filename = File.basename(path)
-          # slide.image.attach(io: io, filename: filename)
+          slide.image = File.open(path)
+          slide.save
         end
       end
     end
