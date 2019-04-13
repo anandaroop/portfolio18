@@ -1,22 +1,19 @@
-<%# debug (f.methods - Object.new.methods).sort %>
-<%# debug (field.methods - Object.new.methods).sort %>
-<%
-if field.data.attached?
-  src = url_for(field.data.blob)
-  name = field.data.blob.filename
-else
-  src = "missing"
-  name = "missing"
-end
-%>
 <div class="field-unit__label">
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field <%= "#{f.object_name}-#{field.name}" %>">
   <div class="active-storage-droppable-file-field__preview">
-    <%= image_tag(src) %><br>
-    <tt><%= name %></tt>
+    <% if field.cached? %>
+      <%= image_tag field.cached_url, style: "max-width: 144px; max-height: 144px" %>
+    <% elsif field.stored? %>
+      <%= image_tag field.url %>
+    <% else %>
+      <%= image_tag "missing" %><br>
+    <% end %>
+    <tt></tt>
   </div>
+
+  <%= f.hidden_field field.attribute, value: field.cached_value %>
   <%= f.file_field field.attribute %>
 </div>
 
@@ -38,7 +35,7 @@ end
 
   // define some elements
   const fieldSelector = "<%= "#{f.object_name}-#{field.name}" %>"
-  const fileInput = document.querySelector(`.${fieldSelector} input`)
+  const fileInput = document.querySelector(`.${fieldSelector} input[type=file]`)
   const previewImage = document.querySelector(`.${fieldSelector} img`)
   const previewName = document.querySelector(`.${fieldSelector} tt`)
 

@@ -12,7 +12,7 @@ class SlideDashboard < Administrate::BaseDashboard
     tags: Field::HasMany,
     id: Field::Number,
     legacy_image: Field::String,
-    image: ActiveStorageDroppableFileField,
+    image: ShrineImageField,
     caption: Field::Text,
     url: Field::String,
     created_on: Field::DateTime,

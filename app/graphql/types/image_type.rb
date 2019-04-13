@@ -2,13 +2,15 @@ module Types
   class ImageType < Types::BaseObject
     field :id, ID, null: false
     field :url, String, 'Primary image public url', null: false
-    field :service_url, String, 'Primary image storage url', null: false
+    field :small_url, String, 'Small image public url', null: false
     field :slide, SlideType, 'Slide for this image', null: false
 
     def url
-      Rails.application.routes.url_helpers.rails_blob_path(object, only_path: true)
+      object[:original].url
     end
 
-    delegate :service_url, to: :object
+    def small_url
+      object[:small].url
+    end
   end
 end

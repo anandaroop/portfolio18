@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 
 const root = document.querySelector('#root')
 const props = JSON.parse(root.dataset.props)
-console.log("props", props)
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Projects {...props} />, root)
@@ -23,7 +22,11 @@ const Project = ({ title, slides }) => (
   <div>
     <h2>{title}</h2>
     {slides.map(s => (
-      <img key={s.id} src={s.image.url} width="400" />
+      <img
+        key={s.id}
+        src={s.image.smallUrl}
+        style={{ maxWidth: '170px', maxHeight: '170px', marginRight: '1em' }}
+      />
     ))}
   </div>
 )
