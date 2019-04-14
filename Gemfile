@@ -18,7 +18,7 @@ gem 'rails', '~> 5.2.0'
 gem 'sass-rails'
 gem 'shrine'
 gem 'uglifier'
-gem 'webpacker'
+gem 'webpacker', '~> 4.x'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

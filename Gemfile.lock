@@ -322,7 +322,7 @@ DEPENDENCIES
   shrine
   uglifier
   web-console
-  webpacker
+  webpacker (~> 4.x)
 
 RUBY VERSION
    ruby 2.5.1p57
