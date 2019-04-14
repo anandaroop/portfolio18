@@ -2,17 +2,17 @@ require 'shrine'
 require 'shrine/storage/s3'
 
 options = {
-  bucket:            'anandarooproy-portfolio',
-  access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
+  bucket: 'anandarooproy-portfolio',
+  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  region:            'us-east-1'
+  region: 'us-east-1'
 }
 
 backup_options = {
-  bucket:            'anandarooproy-portfolio-backup',
-  access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
+  bucket: 'anandarooproy-portfolio-backup',
+  access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  region:            'us-east-1'
+  region: 'us-east-1'
 }
 
 # public

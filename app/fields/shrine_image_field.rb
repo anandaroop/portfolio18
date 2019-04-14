@@ -11,6 +11,7 @@ class ShrineImageField < Administrate::Field::Base
 
   def url(variant = 'small')
     return unless stored?
+
     data.fetch(variant.to_sym, nil).try(:url)
   end
 
@@ -20,6 +21,7 @@ class ShrineImageField < Administrate::Field::Base
 
   def cached_url
     return unless cached?
+
     data.url
   end
 
