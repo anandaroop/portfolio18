@@ -8,5 +8,9 @@ module Types
     field :clip, Boolean, 'True if video clip', null: true
     field :project, ProjectType, 'Project for this slide', null: false
     field :image, ImageType, 'Attached image', null: true
+
+    def image
+      object.image
+    end
   end
 end
