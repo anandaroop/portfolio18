@@ -9,8 +9,6 @@ module Types
     field :project, ProjectType, 'Project for this slide', null: false
     field :image, ImageType, 'Attached image', null: true
 
-    def image
-      object.image
-    end
+    delegate :image, to: :object
   end
 end
