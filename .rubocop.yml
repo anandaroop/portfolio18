@@ -7,10 +7,12 @@ AllCops:
     - 'db/**/*'
     - 'node_modules/**/*'
     - 'vendor/**/*'
+    - 'tmp/**/*'
 
 Metrics/BlockLength:
   Exclude:
     - lib/tasks/*
+    - spec/graphql/*
 
 Metrics/LineLength:
   Max: 120

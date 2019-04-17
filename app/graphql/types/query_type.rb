@@ -56,5 +56,18 @@ module Types
     def image(id:)
       Slide.find(id).image
     end
+
+    field :years, [ProjectYearType], null: true do
+      description 'All years for which there exist projects'
+    end
+
+    def years
+      Project.unscoped.select('distinct year').order('year desc').map(&:year).map do |year|
+        {
+          year: year,
+          projects: Project.unscoped.where(year: year).order(month: :desc)
+        }
+      end
+    end
   end
 end
