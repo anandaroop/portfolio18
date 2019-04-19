@@ -8,6 +8,6 @@ module Types
     field :description, String, 'Project details', null: true
     field :visible, Boolean, 'True if published', null: false
     field :client, ClientType, 'Client for this project', null: false
-    field :slides, [SlideType], 'Slides for this project', null: false
+    field :slides, SlideType.connection_type, 'Slides for this project', max_page_size: 100, null: false
   end
 end

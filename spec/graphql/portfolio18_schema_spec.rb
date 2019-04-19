@@ -28,11 +28,23 @@ RSpec.describe Portfolio18Schema do
       <<~QUERY
         {
           clients {
-            name
-            projects {
-              title
-              slides {
-                caption
+            edges {
+              node {
+                name
+                projects {
+                  edges {
+                    node {
+                      title
+                      slides {
+                        edges {
+                          node {
+                            caption
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -42,27 +54,57 @@ RSpec.describe Portfolio18Schema do
 
     let(:expected) do
       {
-        'clients' => [
-          {
-            'name' => 'The Museum',
-            'projects' => [
-              {
-                'title' => 'The Show',
-                'slides' => [{ 'caption' => 'New slide' }]
-              },
-            ]
-          },
-          {
-            'name' => 'The Press',
-            'projects' => [
-              {
-                'title' => 'The Book',
-                'slides' => [{ 'caption' => 'Old slide' }]
-              },
-            ]
-          },
-        ]
-      }
+        "clients": {
+          "edges": [
+            {
+              "node": {
+                "name": 'The Museum',
+                "projects": {
+                  "edges": [
+                    {
+                      "node": {
+                        "title": 'The Show',
+                        "slides": {
+                          "edges": [
+                            {
+                              "node": {
+                                "caption": 'New slide'
+                              }
+                            },
+                          ]
+                        }
+                      }
+                    },
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "name": 'The Press',
+                "projects": {
+                  "edges": [
+                    {
+                      "node": {
+                        "title": 'The Book',
+                        "slides": {
+                          "edges": [
+                            {
+                              "node": {
+                                "caption": 'Old slide'
+                              }
+                            },
+                          ]
+                        }
+                      }
+                    },
+                  ]
+                }
+              }
+            },
+          ]
+        }
+      }.with_indifferent_access
     end
 
     it 'can return projects grouped by client' do
@@ -75,14 +117,26 @@ RSpec.describe Portfolio18Schema do
       <<~QUERY
         {
           years {
-            year
-            projects {
-              client {
-                name
-              }
-              title
-              slides {
-                caption
+            edges {
+              node {
+                year
+                projects {
+                  edges {
+                    node {
+                      client {
+                        name
+                      }
+                      title
+                      slides {
+                        edges {
+                          node {
+                            caption
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -92,29 +146,63 @@ RSpec.describe Portfolio18Schema do
 
     let(:expected) do
       {
-        'years' => [
-          {
-            'year' => 2016,
-            'projects' => [
-              {
-                'title' => 'The Show',
-                'client' => { 'name' => 'The Museum' },
-                'slides' => [{ 'caption' => 'New slide' }]
-              },
-            ]
-          },
-          {
-            'year' => 2015,
-            'projects' => [
-              {
-                'title' => 'The Book',
-                'client' => { 'name' => 'The Press' },
-                'slides' => [{ 'caption' => 'Old slide' }]
-              },
-            ]
-          },
-        ]
-      }
+        "years": {
+          "edges": [
+            {
+              "node": {
+                "year": 2016,
+                "projects": {
+                  "edges": [
+                    {
+                      "node": {
+                        "client": {
+                          "name": 'The Museum'
+                        },
+                        "title": 'The Show',
+                        "slides": {
+                          "edges": [
+                            {
+                              "node": {
+                                "caption": 'New slide'
+                              }
+                            },
+                          ]
+                        }
+                      }
+                    },
+                  ]
+                }
+              }
+            },
+            {
+              "node": {
+                "year": 2015,
+                "projects": {
+                  "edges": [
+                    {
+                      "node": {
+                        "client": {
+                          "name": 'The Press'
+                        },
+                        "title": 'The Book',
+                        "slides": {
+                          "edges": [
+                            {
+                              "node": {
+                                "caption": 'Old slide'
+                              }
+                            },
+                          ]
+                        }
+                      }
+                    },
+                  ]
+                }
+              }
+            },
+          ]
+        }
+      }.with_indifferent_access
     end
 
     it 'can return projects grouped by year' do
