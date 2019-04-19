@@ -1,0 +1,11 @@
+
+default: &default
+  ttl: <%= ENV['CACHE_TTL'] || 1.hour %>
+
+development:
+  <<: *default
+  ttl: <%= ENV['CACHE_TTL'] || 1.minute %>
+
+production:
+  <<: *default
+  ttl: <%= ENV['CACHE_TTL'] || 1.day %>
