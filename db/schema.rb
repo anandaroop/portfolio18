@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_13_021804) do
+ActiveRecord::Schema.define(version: 2019_04_19_155458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_04_13_021804) do
     t.string "abbr", limit: 4, default: "", null: false
     t.datetime "created_on"
     t.datetime "updated_on"
+    t.string "slug"
     t.index ["abbr"], name: "idx_16615_clients_abbr_index", unique: true
   end
 
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_04_13_021804) do
     t.boolean "visible", default: false
     t.datetime "created_on"
     t.datetime "updated_on"
+    t.string "slug"
   end
 
   create_table "slides", force: :cascade do |t|
