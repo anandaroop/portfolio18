@@ -1,12 +1,24 @@
 query projectsQuery {
-  projects(limit: 20) {
-    id
-    title
-    slides {
-      id
-      image {
-        url
-        smallUrl
+  projects(first: 20) {
+    edges {
+      node {
+        client {
+          slug
+          name
+        }
+        slug
+        title
+        slides {
+          edges {
+            node {
+              id
+              image {
+                url
+                smallUrl
+              }
+            }
+          }
+        }
       }
     }
   }
