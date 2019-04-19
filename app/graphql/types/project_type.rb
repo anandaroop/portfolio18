@@ -1,6 +1,7 @@
 module Types
   class ProjectType < Types::BaseObject
     field :id, ID, null: false
+    field :slug, String, 'Slug', null: false
     field :title, String, 'Main title', null: false
     field :subtitle, String, 'Subtitle', null: true
     field :year, Integer, 'Completion year', null: false
