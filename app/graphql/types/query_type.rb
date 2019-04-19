@@ -9,14 +9,12 @@ module Types
       Client.find(id)
     end
 
-    field :clients, [ClientType], null: true do
-      description 'List clients'
-      argument :offset, Integer, required: false, default_value: 0
-      argument :limit, Integer, required: false, default_value: 10
+    field :clients, ClientType.connection_type, max_page_size: 100, null: false do
+      description 'All clients'
     end
 
-    def clients(offset:, limit:)
-      Client.unscoped.order('name asc').offset(offset).limit(limit)
+    def clients
+      Client.all
     end
 
     field :project, ProjectType, null: true do
@@ -28,15 +26,13 @@ module Types
       Project.find(id)
     end
 
-    field :projects, [ProjectType], null: true do
-      description 'List projects'
-      argument :offset, Integer, required: false, default_value: 0
-      argument :limit, Integer, required: false, default_value: 10
+    field :projects, ProjectType.connection_type, max_page_size: 100, null: false do
+      description 'All projects'
       argument :order, ProjectSort, required: false, default_value: ProjectSort.values['DATE_DESC'].value
     end
 
-    def projects(offset:, limit:, order:)
-      Project.unscoped.includes(:slides).order(order).offset(offset).limit(limit)
+    def projects(order:)
+      Project.all.includes(:slides).order(order)
     end
 
     field :slide, SlideType, null: true do
@@ -57,7 +53,7 @@ module Types
       Slide.find(id).image
     end
 
-    field :years, [ProjectYearType], null: true do
+    field :years, ProjectYearType.connection_type, max_page_size: 100, null: false do
       description 'All years for which there exist projects'
     end
 
@@ -65,7 +61,7 @@ module Types
       Project.unscoped.select('distinct year').order('year desc').map(&:year).map do |year|
         {
           year: year,
-          projects: Project.unscoped.where(year: year).order(month: :desc)
+          projects: Project.unscoped.includes(:slides).where(year: year).order(month: :desc)
         }
       end
     end
