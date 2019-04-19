@@ -2,11 +2,18 @@ module Types
   class QueryType < Types::BaseObject
     field :client, ClientType, null: true do
       description 'Find a client by id'
-      argument :id, ID, required: true
+      argument :id, ID, required: false
+      argument :slug, String, required: false
     end
 
-    def client(id:)
-      Client.find(id)
+    def client(id: nil, slug: nil)
+      raise 'Must supply either client id or slug, but not both' unless exactly_one_of(id, slug)
+
+      if slug.present?
+        Client.find_by(slug: slug)
+      else
+        Client.find(id)
+      end
     end
 
     field :clients, ClientType.connection_type, max_page_size: 100, null: false do
@@ -19,11 +26,18 @@ module Types
 
     field :project, ProjectType, null: true do
       description 'Find a project by id'
-      argument :id, ID, required: true
+      argument :id, ID, required: false
+      argument :slug, String, required: false
     end
 
-    def project(id:)
-      Project.find(id)
+    def project(id: nil, slug: nil)
+      raise 'Must supply either project id or slug, but not both' unless exactly_one_of(id, slug)
+
+      if slug.present?
+        Project.find_by(slug: slug)
+      else
+        Project.find(id)
+      end
     end
 
     field :projects, ProjectType.connection_type, max_page_size: 100, null: false do
@@ -64,6 +78,12 @@ module Types
           projects: Project.unscoped.includes(:slides).where(year: year).order(month: :desc)
         }
       end
+    end
+
+    private
+
+    def exactly_one_of(*args)
+      args.reject(&:blank?).compact.length == 1
     end
   end
 end

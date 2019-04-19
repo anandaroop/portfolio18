@@ -209,4 +209,88 @@ RSpec.describe Portfolio18Schema do
       expect(result['data']).to eq(expected)
     end
   end
+
+  describe 'client query' do
+    let(:query_string) do
+      <<~QUERY
+        {
+          client(slug: "the-museum") {
+            name
+          }
+        }
+      QUERY
+    end
+
+    let(:expected) do
+      {
+        "client": {
+          "name": 'The Museum'
+        }
+      }.with_indifferent_access
+    end
+
+    it 'can find by slug' do
+      expect(result['data']).to eq(expected)
+    end
+
+    context 'when slug and id are both supplied' do
+      let(:query_string) do
+        <<~QUERY
+          {
+            client(slug: "the-museum", id: 42) {
+              name
+            }
+          }
+        QUERY
+      end
+
+      it 'returns an error' do
+        expect do
+          Portfolio18Schema.execute(query_string)
+        end.to raise_error RuntimeError, /not both/
+      end
+    end
+  end
+
+  describe 'project query' do
+    let(:query_string) do
+      <<~QUERY
+        {
+          project(slug: "the-show") {
+            title
+          }
+        }
+      QUERY
+    end
+
+    let(:expected) do
+      {
+        "project": {
+          "title": 'The Show'
+        }
+      }.with_indifferent_access
+    end
+
+    it 'can find by slug' do
+      expect(result['data']).to eq(expected)
+    end
+
+    context 'when slug and id are both supplied' do
+      let(:query_string) do
+        <<~QUERY
+          {
+            project(slug: "the-show", id: 42) {
+              title
+            }
+          }
+        QUERY
+      end
+
+      it 'returns an error' do
+        expect do
+          Portfolio18Schema.execute(query_string)
+        end.to raise_error RuntimeError, /not both/
+      end
+    end
+  end
 end

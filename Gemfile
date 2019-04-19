@@ -17,6 +17,7 @@ gem 'puma'
 gem 'rails', '~> 5.2.0'
 gem 'sass-rails'
 gem 'shrine'
+gem 'stringex'
 gem 'uglifier'
 gem 'webpacker', '~> 4.x'
 
