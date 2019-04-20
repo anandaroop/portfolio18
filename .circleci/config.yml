@@ -1,0 +1,62 @@
+version: 2
+jobs:
+  build:
+    docker:
+
+      # Language image for Ruby & Node, plus browsers for acceptance tests
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          AWS_ACCESS_KEY_ID: foo
+          AWS_SECRET_ACCESS_KEY: foo
+
+      # Service image for db
+      - image: circleci/postgres:11.1-alpine
+
+    steps:
+
+      # Check out source code from repo
+      - checkout
+
+      # Install Ruby deps
+      #
+      # Look for any of 3 partial filesystem caches of the vendor/bundle directory.
+      # The more specific the cache hit, the more up-to-date the bundle will be.
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ .Branch }}
+            - gem-cache-v1
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gem-cache-v1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Set up the db
+      - run:
+          name: Set up database
+          command: |
+              mv config/database{.circle,}.yml
+              bundle exec rake db:create db:schema:load
+
+      # Lint Ruby code
+      - run: bundle exec rubocop
+
+      # Run RSpec tests
+      - run: bundle exec rspec
+
+      # # Install Javascript deps
+      # #
+      # # Look for any of 3 partial filesystem caches of the node_modules directory.
+      # # The more specific the cache hit, the more up-to-date the modules will be.
+      # - restore_cache:
+      #     keys:
+      #       - yarn-cache-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #       - yarn-cache-v1-{{ .Branch }}
+      #       - yarn-cache-v1
+      # - run: yarn install
+      # - save_cache:
+      #     key: yarn-cache-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - node_modules
