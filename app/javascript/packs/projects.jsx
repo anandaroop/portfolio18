@@ -8,25 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Projects {...props} />, root)
 })
 
-const Projects = ({ data }) => (
-  <div>
-    <h1>Projects</h1>
-    {data.projects.map(({ id, ...props }) => (
-      <Project key={id} {...props} />
-    ))}
-    <hr />
-  </div>
-)
+const Projects = ({ data }) => {
+  return (
+    <div>
+      <h1>Projects</h1>
+      {data.projects.edges.map(({ node: { slug, ...props } }) => (
+        <Project key={slug} {...props} />
+      ))}
+      <hr />
+    </div>
+  )
+}
 
-const Project = ({ title, slides }) => (
-  <div>
-    <h2>{title}</h2>
-    {slides.map(s => (
-      <img
-        key={s.id}
-        src={s.image.smallUrl}
-        style={{ maxWidth: '170px', maxHeight: '170px', marginRight: '1em' }}
-      />
-    ))}
-  </div>
-)
+const Project = ({ title, slides }) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+      {slides.edges.map(({ node: { id, image } }) => (
+        <img
+          key={id}
+          src={image.smallUrl}
+          style={{ maxWidth: '170px', maxHeight: '170px', marginRight: '1em' }}
+        />
+      ))}
+    </div>
+  )
+}
