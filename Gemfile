@@ -7,7 +7,7 @@ gem 'administrate'
 gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'coffee-rails'
-gem 'graphiql-rails'
+gem 'graphiql-rails', '~> 1.4.11' # https://github.com/rmosolgo/graphiql-rails/issues/58
 gem 'graphql'
 gem 'image_processing'
 gem 'jbuilder'
