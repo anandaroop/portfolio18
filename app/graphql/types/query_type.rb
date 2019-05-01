@@ -45,11 +45,12 @@ module Types
           null: false,
           connection: true do
       description 'All projects'
-      argument :order, ProjectSort, required: false, default_value: ProjectSort.values['DATE_DESC'].value
+      argument :order, ProjectSort, required: false
     end
 
-    def projects(order:)
-      Project.all.includes(:slides).order(order)
+    def projects(order: nil)
+      projects = order.present? ? Project.unscoped.order(order) : Project.all
+      projects.includes(:slides)
     end
 
     field :slide, SlideType, null: true do
