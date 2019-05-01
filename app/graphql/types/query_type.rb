@@ -40,7 +40,10 @@ module Types
       end
     end
 
-    field :projects, ProjectType.connection_type, max_page_size: 100, null: false do
+    field :projects, ProjectConnectionWithTotalCountType,
+          max_page_size: 100,
+          null: false,
+          connection: true do
       description 'All projects'
       argument :order, ProjectSort, required: false, default_value: ProjectSort.values['DATE_DESC'].value
     end
