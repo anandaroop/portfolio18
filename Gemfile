@@ -12,7 +12,7 @@ gem 'graphql'
 gem 'image_processing'
 gem 'jbuilder'
 gem 'mini_magick'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg'
 gem 'puma'
 gem 'rails', '~> 5.2.0'
 gem 'sass-rails'
@@ -37,14 +37,13 @@ group :development, :test do
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'web-console'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
