@@ -60,3 +60,5 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 end
+
+Webdrivers.cache_time = 86_400
